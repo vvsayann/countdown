@@ -19,7 +19,6 @@ cursor: url('cursor.cur') 16 16, auto;
 color:#333;
 }
 
-/* container */
 .box{
 background:rgba(255,255,255,0.3);
 padding:30px;
@@ -28,19 +27,16 @@ backdrop-filter:blur(10px);
 box-shadow:0 10px 40px rgba(0,0,0,0.2);
 }
 
-/* glow title */
 .glow{
 color:#ff3d6e;
 text-shadow:0 0 10px #ff4d6d,0 0 20px #ff4d6d;
 }
 
-/* countdown */
 #countdown{
 font-size:28px;
 margin-top:15px;
 }
 
-/* button */
 button{
 margin-top:20px;
 padding:12px 25px;
@@ -51,8 +47,6 @@ border-radius:25px;
 cursor:pointer;
 font-size:16px;
 }
-
-/* cursor trail */
 </style>
 </head>
 
@@ -60,18 +54,15 @@ font-size:16px;
 
 <div class="box">
 <h1 class="glow">Your Surprise Awaits ❤️</h1>
-
 <div id="countdown">Loading...</div>
-
 <button onclick="goMain()">Aithe aa soniye 💖</button>
+</div>
 
 <script>
 function goMain(){
 window.location.href = "https://vvsayann.github.io/hennas-birthday/";
 }
-</script>
 
-/* 🎯 COUNTDOWN TO 20 APRIL 2026 */
 const targetDate = new Date("April 20, 2026 00:00:00").getTime();
 
 function updateCountdown(){
@@ -95,12 +86,6 @@ days + "d " + hours + "h " + minutes + "m " + seconds + "s";
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-/* 🔗 BUTTON (change link to your main page file) */
-function goToMain(){
-window.location.href = "index.html";
-}
-
-/* 💖 CURSOR TRAIL (same as your main site) */
 document.addEventListener("mousemove",function(e){
 let heart=document.createElement("div");
 heart.innerHTML="💖";
