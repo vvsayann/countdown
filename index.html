@@ -1,39 +1,56 @@
 <script>
-const targetDate = new Date("April 20, 2026 00:00:00").getTime();
+/* Pakistan timezone-safe target date */
+const targetDate = new Date("2026-04-20T00:00:00+05:00").getTime();
+
 const btn = document.getElementById("enterBtn");
+const countdownEl = document.getElementById("countdown");
+
+let redirected = false; // prevents multiple redirects
 
 function updateCountdown(){
-const now = new Date().getTime();
+
+const now = Date.now();
 const diff = targetDate - now;
 
-if(diff <= 0){
-document.getElementById("countdown").innerHTML = "It's your day shoni ❤️";
+/* when countdown finishes */
+if(diff <= 0 && !redirected){
 
+redirected = true;
 
+countdownEl.innerHTML = "It's your day shoni ❤️";
+
+/* enable button */
 btn.style.opacity = "1";
 btn.style.pointerEvents = "auto";
 
-
+/* auto redirect after 2 seconds */
 setTimeout(()=>{
-window.location.href = "https://vvsayann.github.io/hennas-day/"; 
+window.location.href = "https://vvsayann.github.io/hennas-day/";
 },2000);
 
 return;
 }
 
-let days = Math.floor(diff / (1000*60*60*24));
-let hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-let minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
-let seconds = Math.floor((diff % (1000*60)) / 1000);
+/* calculate remaining time */
+const days = Math.floor(diff / (1000*60*60*24));
+const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
+const seconds = Math.floor((diff % (1000*60)) / 1000);
 
-document.getElementById("countdown").innerHTML =
-days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+/* update UI */
+countdownEl.innerHTML =
+days + "d " +
+hours + "h " +
+minutes + "m " +
+seconds + "s";
 }
 
+/* update every second */
 setInterval(updateCountdown,1000);
 updateCountdown();
 
+/* manual button redirect */
 function goMain(){
-window.location.href = "https://vvsayann.github.io/hennas-day/"; 
+window.location.href = "https://vvsayann.github.io/hennas-day/";
 }
 </script>
