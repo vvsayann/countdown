@@ -1,11 +1,16 @@
 <script>
-window.onload = function(){
+window.addEventListener("load", function(){
 
-/* Pakistan timezone-safe birthday time */
 const targetDate = new Date("2026-04-20T00:00:00+05:00").getTime();
 
 const btn = document.getElementById("enterBtn");
 const countdownEl = document.getElementById("countdown");
+
+/* safety check (prevents white screen) */
+if(!btn || !countdownEl){
+console.error("Missing elements: check IDs (enterBtn / countdown)");
+return;
+}
 
 let redirected = false;
 
@@ -25,7 +30,7 @@ countdownEl.innerHTML = "It's your day shoni ❤️";
 btn.style.opacity = "1";
 btn.style.pointerEvents = "auto";
 
-/* auto redirect after 2 seconds */
+/* redirect after 2 sec */
 setTimeout(()=>{
 window.location.href = "https://vvsayann.github.io/hennas-day/";
 },2000);
@@ -33,7 +38,10 @@ window.location.href = "https://vvsayann.github.io/hennas-day/";
 return;
 }
 
-/* calculate remaining time */
+/* prevent negative values showing */
+if(diff < 0) return;
+
+/* calculate time */
 const days = Math.floor(diff / (1000*60*60*24));
 const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
 const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
@@ -47,14 +55,14 @@ minutes + "m " +
 seconds + "s";
 }
 
-/* run timer */
+/* start */
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-/* manual redirect button */
+/* button redirect */
 window.goMain = function(){
 window.location.href = "https://vvsayann.github.io/hennas-day/";
 };
 
-};
+});
 </script>
