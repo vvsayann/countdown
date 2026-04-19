@@ -1,16 +1,56 @@
-<script>
-window.addEventListener("load", function(){
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Countdown ❤️</title>
 
+<style>
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background: linear-gradient(135deg,#ffdde1,#ee9ca7,#ffd1dc);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+flex-direction:column;
+text-align:center;
+color:#333;
+}
+
+.box{
+background:rgba(255,255,255,0.3);
+padding:30px;
+border-radius:20px;
+}
+
+button{
+margin-top:20px;
+padding:10px 20px;
+background:#ff4d6d;
+color:white;
+border:none;
+border-radius:20px;
+opacity:0.5;
+pointer-events:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h1>Your Surprise Awaits ❤️</h1>
+<div id="countdown">Loading...</div>
+<button id="enterBtn" onclick="goMain()">Enter 💖</button>
+</div>
+
+<script>
 const targetDate = new Date("2026-04-20T00:00:00+05:00").getTime();
 
 const btn = document.getElementById("enterBtn");
 const countdownEl = document.getElementById("countdown");
-
-/* safety check (prevents white screen) */
-if(!btn || !countdownEl){
-console.error("Missing elements: check IDs (enterBtn / countdown)");
-return;
-}
 
 let redirected = false;
 
@@ -19,18 +59,15 @@ function updateCountdown(){
 const now = Date.now();
 const diff = targetDate - now;
 
-/* when countdown finishes */
 if(diff <= 0 && !redirected){
 
 redirected = true;
 
-countdownEl.innerHTML = "It's your day shoni ❤️";
+countdownEl.innerHTML = "It's your day ❤️";
 
-/* enable button */
 btn.style.opacity = "1";
 btn.style.pointerEvents = "auto";
 
-/* redirect after 2 sec */
 setTimeout(()=>{
 window.location.href = "https://vvsayann.github.io/hennas-day/";
 },2000);
@@ -38,31 +75,22 @@ window.location.href = "https://vvsayann.github.io/hennas-day/";
 return;
 }
 
-/* prevent negative values showing */
-if(diff < 0) return;
-
-/* calculate time */
 const days = Math.floor(diff / (1000*60*60*24));
 const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
 const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
 const seconds = Math.floor((diff % (1000*60)) / 1000);
 
-/* update UI */
 countdownEl.innerHTML =
-days + "d " +
-hours + "h " +
-minutes + "m " +
-seconds + "s";
+days + "d " + hours + "h " + minutes + "m " + seconds + "s";
 }
 
-/* start */
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-/* button redirect */
-window.goMain = function(){
+function goMain(){
 window.location.href = "https://vvsayann.github.io/hennas-day/";
-};
-
-});
+}
 </script>
+
+</body>
+</html>
