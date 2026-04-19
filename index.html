@@ -44,8 +44,9 @@ border:none;
 background:#ff4d6d;
 color:white;
 border-radius:25px;
-cursor:pointer;
 font-size:16px;
+opacity:0.5;
+pointer-events:none;
 }
 </style>
 </head>
@@ -55,22 +56,29 @@ font-size:16px;
 <div class="box">
 <h1 class="glow">Your Surprise Awaits ❤️</h1>
 <div id="countdown">Loading...</div>
-<button onclick="goMain()">Aithe aa soniye 💖</button>
+<button id="enterBtn" onclick="goMain()">Aithe aa soniye 💖</button>
 </div>
 
 <script>
-function goMain(){
-window.location.href = "https://vvsayann.github.io/hennas-birthday/";
-}
-
 const targetDate = new Date("April 20, 2026 00:00:00").getTime();
+const btn = document.getElementById("enterBtn");
 
 function updateCountdown(){
 const now = new Date().getTime();
 const diff = targetDate - now;
 
 if(diff <= 0){
-document.getElementById("countdown").innerHTML = "It's your day ❤️";
+document.getElementById("countdown").innerHTML = "It's your day shoni ❤️";
+
+/* enable button */
+btn.style.opacity = "1";
+btn.style.pointerEvents = "auto";
+
+/* auto redirect after 2 sec */
+setTimeout(()=>{
+window.location.href = "https://vvsayann.github.io/hennas-birthday/";
+},2000);
+
 return;
 }
 
@@ -85,6 +93,10 @@ days + "d " + hours + "h " + minutes + "m " + seconds + "s";
 
 setInterval(updateCountdown,1000);
 updateCountdown();
+
+function goMain(){
+window.location.href = "https://vvsayann.github.io/hennas-birthday/";
+}
 
 document.addEventListener("mousemove",function(e){
 let heart=document.createElement("div");
