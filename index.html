@@ -1,11 +1,13 @@
 <script>
-/* Pakistan timezone-safe target date */
+window.onload = function(){
+
+/* Pakistan timezone-safe birthday time */
 const targetDate = new Date("2026-04-20T00:00:00+05:00").getTime();
 
 const btn = document.getElementById("enterBtn");
 const countdownEl = document.getElementById("countdown");
 
-let redirected = false; // prevents multiple redirects
+let redirected = false;
 
 function updateCountdown(){
 
@@ -45,12 +47,14 @@ minutes + "m " +
 seconds + "s";
 }
 
-/* update every second */
+/* run timer */
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-/* manual button redirect */
-function goMain(){
+/* manual redirect button */
+window.goMain = function(){
 window.location.href = "https://vvsayann.github.io/hennas-day/";
-}
+};
+
+};
 </script>
